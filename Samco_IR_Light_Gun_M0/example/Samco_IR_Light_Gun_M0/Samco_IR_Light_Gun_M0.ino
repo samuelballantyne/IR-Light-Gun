@@ -187,28 +187,28 @@ void getPosition() {    // Get tilt adjusted position from IR postioning camera
       positionY[i] = myDFRobotIRPosition.readY(i);
     }
 
-    if (positionX[0] > positionX[1]) {
-      oneY = map (positionY[0], 0, 1023, 1023, 0);
+        if (positionX[0] > positionX[1]) {
+      oneY = positionY[0];
       oneX = positionX[0];
-      twoY = map (positionY[1], 0, 1023, 1023, 0);
+      twoY = positionY[1];
       twoX = positionX[1];
     }
     else if (positionX[0] < positionX[1]) {
-      oneY = map (positionY[1], 0, 768, 768, 0);
+      oneY = positionY[1];
       oneX = positionX[1];
-      twoY = map (positionY[0], 0, 768, 768, 0);
+      twoY = positionY[0];
       twoX = positionX[0];
     }
     else {
       oneY = 1023;
-      oneX = 1023;
+      oneX = 0;
       twoY = 1023;
-      twoX = 1023;
+      twoX = 0;
     }
     
-    finalX = 384 + cos(atan2(oneY - twoY, oneX - twoX) * -1) * (((twoX - oneX) / 2 + oneX) - 384) - sin(atan2(oneY - twoY, oneX - twoX) * -1) * (((twoY - oneY) / 2 + oneY) - 384);
-    finalY = 384 + sin(atan2(oneY - twoY, oneX - twoX) * -1) * (((twoX - oneX) / 2 + oneX) - 384) + cos(atan2(oneY - twoY, oneX - twoX) * -1) * (((twoY - oneY) / 2 + oneY) - 384);
-
+    finalX = 512 + cos(atan2(twoY - oneY, twoX - oneX) * -1) * (((oneX - twoX) / 2 + twoX) - 512) - sin(atan2(twoY - oneY, twoX - oneX) * -1) * (((oneY - twoY) / 2 + twoY) - 384);
+    finalY = 384 + sin(atan2(twoY - oneY, twoX - oneX) * -1) * (((oneX - twoX) / 2 + twoX) - 512) + cos(atan2(twoY - oneY, twoX - oneX) * -1) * (((oneY - twoY) / 2 + twoY) - 384);
+    
     delay(10);
   }
 
