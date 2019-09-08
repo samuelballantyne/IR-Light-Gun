@@ -166,7 +166,6 @@ void loop() {
     PrintResults();
     reset();
 
-    delay(1);
   }
 
 }
@@ -209,7 +208,6 @@ void getPosition() {    // Get tilt adjusted position from IR postioning camera
     finalX = 512 + cos(atan2(twoY - oneY, twoX - oneX) * -1) * (((oneX - twoX) / 2 + twoX) - 512) - sin(atan2(twoY - oneY, twoX - oneX) * -1) * (((oneY - twoY) / 2 + twoY) - 384);
     finalY = 384 + sin(atan2(twoY - oneY, twoX - oneX) * -1) * (((oneX - twoX) / 2 + twoX) - 512) + cos(atan2(twoY - oneY, twoX - oneX) * -1) * (((oneY - twoY) / 2 + twoY) - 384);
     
-    delay(10);
   }
 
   else {
