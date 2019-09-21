@@ -101,8 +101,6 @@ void loop() {
 
   else if (count > 2 ) {
 
-    AbsMouse.move((res_x / 2), (res_y / 2));
-
     skip();
     mouseCount();
 
