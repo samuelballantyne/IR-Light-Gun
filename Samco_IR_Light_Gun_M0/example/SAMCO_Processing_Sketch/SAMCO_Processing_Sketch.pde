@@ -20,7 +20,7 @@
  
 import processing.serial.*;
 
-int port = 1;   // If the 4 dots are RED try changing port number
+int port = 0;   // If the 4 dots are RED try changing port number
 
 int lf = 10;    // Linefeed in ASCII
 String myString = null;
