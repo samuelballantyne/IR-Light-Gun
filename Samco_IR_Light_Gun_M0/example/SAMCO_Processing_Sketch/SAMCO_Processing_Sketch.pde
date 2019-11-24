@@ -43,7 +43,7 @@ int middle = #FF0000;
 String words = "0";
  
  // declare variables to hold color for the four points
- color p1color = color( 255, 255, 0 ); // RED
+ color p1color = color( 255, 0, 0 ); // RED
  color p2color = color( 0, 255, 0 ); // GREEN
  color p3color = color( 0, 0, 255 ); // BLUE
  color p4color = color( 0, 0, 255 ); // BLUE
