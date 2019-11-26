@@ -41,11 +41,13 @@ int caliPin = A1;               // Set Calibration Pin
 int leftPin = A2;               // Set Left Mouse Pin
 int rightPin = A3;              // Set Right Mouse Pin
 int middlePin = A4;             // Set Middle Mouse Pin
+int altPin = A5;                // Set Alt Pin
 
 int caliButton = 0;
 int leftButton = 0;
 int rightButton = 0;
 int middleButton = 0;
+int altButton = 0;
 
 int buttonState1 = 0;           // Set Button states
 int lastButtonState1 = 0;
@@ -55,6 +57,8 @@ int buttonState3 = 0;
 int lastButtonState3 = 0;
 int buttonState4 = 0;         
 int lastButtonState4 = 0;   
+int buttonState5 = 0;         
+int lastButtonState5 = 0;  
 
 void setup() {
     digitalWrite (5, HIGH);                 // This pin is used to power the IR Camera when using Samco PCB
@@ -66,12 +70,14 @@ void setup() {
     pinMode(leftPin, INPUT_PULLUP);
     pinMode(rightPin, INPUT_PULLUP);
     pinMode(middlePin, INPUT_PULLUP);  
+    pinMode(altPin, INPUT_PULLUP);  
 }
 
 void loop() {
   
     getPosition();
     mouseButtons();
+    altButtons();
     PrintResults();
 
     
@@ -82,7 +88,8 @@ void mouseButtons() {    // Setup Cali, Left, Right & Middle Mouse buttons
   buttonState1 = digitalRead(caliPin);
   buttonState2 = digitalRead(leftPin);
   buttonState3 = digitalRead(rightPin);
-  buttonState4 = digitalRead(middlePin);     
+  buttonState4 = digitalRead(middlePin);
+      
 
   if (buttonState1 != lastButtonState1) {
     if (buttonState1 == LOW) {
@@ -91,7 +98,7 @@ void mouseButtons() {    // Setup Cali, Left, Right & Middle Mouse buttons
     else { 
       caliButton = 255;
     }
-    delay(50);
+    delay(10);
   }
   
   if (buttonState2 != lastButtonState2) {
@@ -101,7 +108,7 @@ void mouseButtons() {    // Setup Cali, Left, Right & Middle Mouse buttons
     else { 
       leftButton = 255;
     }
-    delay(50);
+    delay(10);
   }
 
   if (buttonState3 != lastButtonState3) {
@@ -111,7 +118,7 @@ void mouseButtons() {    // Setup Cali, Left, Right & Middle Mouse buttons
     else { 
       rightButton = 255;
     }
-    delay(50);
+    delay(10);
   }
 
   if (buttonState4 != lastButtonState4) {     
@@ -121,13 +128,30 @@ void mouseButtons() {    // Setup Cali, Left, Right & Middle Mouse buttons
     else { 
       middleButton = 255;
     }
-    delay(50);
+    delay(10);
   }
   
   lastButtonState1 = buttonState1;
   lastButtonState2 = buttonState2;
   lastButtonState3 = buttonState3;
-  lastButtonState4 = buttonState4;            
+  lastButtonState4 = buttonState4;           
+}
+
+void altButtons() {    // Setup Cali, Left, Right & Middle Mouse buttons
+  
+  buttonState5 = digitalRead(altPin);
+
+    if (buttonState5 != lastButtonState5) {     
+    if (buttonState5 == LOW) {
+      altButton = 0;
+    }
+    else { 
+      altButton = 255;
+    }
+    delay(10);
+  }
+  
+  lastButtonState5 = buttonState5;            
 }
 
 void PrintResults() {    // Print results for debugging
@@ -154,6 +178,8 @@ void PrintResults() {    // Print results for debugging
     Serial.print( rightButton );
     Serial.print( "," );
     Serial.print( middleButton );
+    Serial.print( "," );
+    Serial.print( altButton );
     Serial.println();
     delay( 20 );
 }
