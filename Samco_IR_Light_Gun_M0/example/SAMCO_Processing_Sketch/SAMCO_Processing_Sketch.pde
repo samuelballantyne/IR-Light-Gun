@@ -39,6 +39,7 @@ int cali = #FF0000;
 int left = #FF0000;
 int right = #FF0000;
 int middle = #FF0000;
+int alt = #FF0000;
 
 String words = "0";
  
@@ -86,11 +87,11 @@ void draw() {
   drawCircle( p2x, p2y, p2color );
   drawCircle( p3x, p3y, p3color );
   drawCircle( p4x, p4y, p4color );
-  buttonTest( 360, 668, cali );
-  buttonTest( 460, 668, left );
-  buttonTest( 560, 668, right );
-  buttonTest( 660, 668, middle );
-
+  buttonTest( 500, 668, cali );
+  buttonTest( 600, 668, left );
+  buttonTest( 700, 668, right );
+  buttonTest( 800, 668, middle );
+  buttonTest( 900, 668, alt );
 }  
 
 
@@ -137,4 +138,5 @@ void convertmyStringToCoordinates() {
   left = output[9];
   right = output[10];
   middle = output[11];
+  alt = output[12];
 }
