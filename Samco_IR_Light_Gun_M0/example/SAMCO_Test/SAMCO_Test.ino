@@ -191,19 +191,19 @@ void getPosition() {    // Get tilt adjusted position from IR postioning camera
   if (myDFRobotIRPosition.available()) {
     for (int i = 0; i < 4; i++) {
       positionX[i] = myDFRobotIRPosition.readX(i);
-      positionY[i] = myDFRobotIRPosition.readY(i);
+      positionY[i] = map (myDFRobotIRPosition.readY(i), 0, 768, 768, 0 );
     }
 
       if (positionX[0] > positionX[1]) {
-      oneY = map (positionY[0], 0, 768, 768, 0 );
+      oneY = positionY[0];
       oneX = positionX[0];
-      twoY = map (positionY[1], 0, 768, 768, 0 );
+      twoY = positionY[1];
       twoX = positionX[1];
     }
     else if (positionX[0] < positionX[1]) {
-      oneY = map (positionY[1], 0, 768, 768, 0 );
+      oneY = positionY[1];
       oneX = positionX[1];
-      twoY = map (positionY[0], 0, 768, 768, 0 );
+      twoY = positionY[0];
       twoX = positionX[0];
     }
     else {
