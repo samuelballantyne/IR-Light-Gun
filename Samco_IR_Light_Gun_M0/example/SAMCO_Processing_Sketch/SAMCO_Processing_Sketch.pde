@@ -5,7 +5,7 @@
     You can find more info on this sensor at https://www.dfrobot.com/index.php?route=product/product&product_id=1088
     
     WHAT THIS SKETCH DOES:
-    Draws any detected infrared lights as circles onto the screen
+    Draws any detected infrared lights as circles onto the screen & test buttons fro SAMCO Light Gun
     
     HOOKUP:
     IRCam+Arduino --USB cable--> computer running Processing   
@@ -40,8 +40,6 @@ int left = #FF0000;
 int right = #FF0000;
 int middle = #FF0000;
 int alt = #FF0000;
-
-String words = "0";
  
  // declare variables to hold color for the four points
  color p1color = color( 255, 0, 0 ); // RED
@@ -92,6 +90,14 @@ void draw() {
   buttonTest( 700, 668, right );
   buttonTest( 800, 668, middle );
   buttonTest( 900, 668, alt );
+  textSize(12);
+  textAlign(CENTER);
+  fill ( 255, 255, 255 );
+  text("CALI", 500, 710); 
+  text("LEFT", 600, 710);
+  text("RIGHT", 700, 710);
+  text("MIDDLE", 800, 710); 
+  text("ALT", 900, 710);
 }  
 
 
