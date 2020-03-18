@@ -7,10 +7,9 @@ The SAMCO is a Namco light gun with the insides replaced with an Arduino micro c
 Gun currently works with Mame in RetroPie (for Raspberry Pi), PSX Beetle (Windows) and PCSX2 (Windows).
 
 Parts:  
-Adafruit ItsyBitsy M0 (code will work with any HID supported microcontroller with a slight adjustment)  
+Adafruit ItsyBitsy 32u4 (3V or 5V), M0 & M4  
 DF Robot IR positioning camera  
-2 LED's  
-2 100 ohm Resistors  
+Dolphin Bar  
 
 Features:  
 Quick calibration  
