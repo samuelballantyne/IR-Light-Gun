@@ -9,7 +9,7 @@ Gun currently works with Mame in RetroPie (for Raspberry Pi), PSX Beetle (Window
 Parts:  
 Adafruit ItsyBitsy 32u4 (3V or 5V), M0 & M4  
 DF Robot IR positioning camera  
-Dolphin Bar  
+Wii USB sensor bar (not dolphin bar, dolphin bar needs wiimote to turn it on)
 
 Features:  
 Quick calibration  
