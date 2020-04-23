@@ -19,3 +19,5 @@ Tilt correction
 In this project I've used libraries from DFRobot & Jonathan Edgecome. Original Libraries can be found at...
 https://github.com/DFRobot/DFRobotIRPosition  
 https://github.com/jonathanedgecombe/absmouse
+
+If you enjoyed thsi code please consider becoming a patreon: https://www.patreon.com/samco
