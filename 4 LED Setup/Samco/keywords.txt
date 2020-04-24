@@ -1,0 +1,27 @@
+# Datatypes
+Samco			KEYWORD1
+AbsMouse		KEYWORD1
+DFRobotIRPosition	KEYWORD1
+
+# Methods and Functions
+begin			KEYWORD2
+testX	                KEYWORD2
+testY			KEYWORD2
+X			KEYWORD2
+Y			KEYWORD2
+mapper			KEYWORD2
+init			KEYWORD2
+move			KEYWORD2
+press			KEYWORD2
+release			KEYWORD2
+report			KEYWORD2
+begin			KEYWORD2
+requestPosition		KEYWORD2
+available		KEYWORD2
+testMedianX		KEYWORD2
+testMedianY		KEYWORD2
+
+# Constants
+MOUSE_LEFT		LITERAL1
+MOUSE_RIGHT		LITERAL1
+MOUSE_MIDDLE		LITERAL1
