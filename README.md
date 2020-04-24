@@ -24,4 +24,4 @@ In this project I've used libraries from DFRobot & Jonathan Edgecome. Original L
 https://github.com/DFRobot/DFRobotIRPosition  
 https://github.com/jonathanedgecombe/absmouse
 
-If you enjoyed thsi code please consider becoming a patreon: https://www.patreon.com/samco
+If you enjoyed this code please consider becoming a patreon: https://www.patreon.com/samco
