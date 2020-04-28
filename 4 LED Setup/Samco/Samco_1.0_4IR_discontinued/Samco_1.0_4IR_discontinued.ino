@@ -101,8 +101,7 @@ void loop() {
 
 
     skip();
-    mouseCount();
-    AbsMouse.move((res_x / 2), (res_y / 2));  
+    mouseCount(); 
 
 
   }
