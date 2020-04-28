@@ -17,7 +17,7 @@ Pause/recaibration
 Tilt correction  
 
 Note: libraries are sorted slightly differently...  
-To use 2 LED libries place board type folder in Documents/Arduino/library eg. Documents/Arduino/library/Samco_1.1 Folder  
+To use 2 LED libries place board type folder in Documents/Arduino/library eg. Documents/Arduino/library/Samco_1.1  
 To use 4 LED library place Samco folder in Documents/Arduino/library eg. Documents/Arduino/library/Samco  
 
 In this project I've used libraries from DFRobot & Jonathan Edgecome. Original Libraries can be found at...
