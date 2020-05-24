@@ -19,6 +19,9 @@ int yTop = 0;
 int xRight = 0;
 int yBottom = 0;
 
+int xCenter = 512;
+int yCenter = 368;
+
 int MoveXAxis = 0;              // Unconstrained mouse postion
 int MoveYAxis = 0;               
 
@@ -59,7 +62,7 @@ int lastButtonState8 = 0;
 int buttonState9 = 0;           
 int lastButtonState9 = 0;
 int buttonState10 = 0;
-int lastButtonState10 = 0;    
+int lastButtonState10 = 0; 
 
 #include <HID.h>                // Load libraries
 #include <Wire.h>
@@ -150,15 +153,18 @@ void loop() {
 
 
   else if (count > 0 ) {
-
+    
     AbsMouse.move((res_x - 300), (res_y - 200));
-
+    
     mouseCount();
     getPosition();
     reset();
 
     xRight = finalX;
     yBottom = finalY;
+    
+    xCenter = ((xRight - xLeft) / 2) + min(xRight, xLeft);
+    yCenter = ((yBottom - yTop) / 2) + min(yBottom, yTop);
 
     PrintResults();
 
@@ -169,7 +175,7 @@ void loop() {
 
 
   else {
-
+    
     AbsMouse.move(conMoveXAxis, conMoveYAxis);
 
     mouseButtons();
@@ -197,7 +203,7 @@ void getPosition() {    // Get tilt adjusted position from IR postioning camera
 
 myDFRobotIRPosition.requestPosition();
     if (myDFRobotIRPosition.available()) {
-    mySamco.begin(myDFRobotIRPosition.readX(0), myDFRobotIRPosition.readY(0), myDFRobotIRPosition.readX(1), myDFRobotIRPosition.readY(1),myDFRobotIRPosition.readX(2), myDFRobotIRPosition.readY(2),myDFRobotIRPosition.readX(3), myDFRobotIRPosition.readY(3));
+    mySamco.begin(myDFRobotIRPosition.readX(0), myDFRobotIRPosition.readY(0), myDFRobotIRPosition.readX(1), myDFRobotIRPosition.readY(1),myDFRobotIRPosition.readX(2), myDFRobotIRPosition.readY(2),myDFRobotIRPosition.readX(3), myDFRobotIRPosition.readY(3), xCenter, yCenter);
     finalX = mySamco.X();
     finalY = mySamco.Y();
     }
@@ -419,8 +425,8 @@ void PrintResults() {    // Print results for debugging
   Serial.print(", ");
   Serial.print(yBottom);
   Serial.print("     Position: ");
-  Serial.print(conMoveXAxis);
+  Serial.print(xCenter);
   Serial.print(", ");
-  Serial.println(conMoveYAxis);
+  Serial.println(yCenter);
 
 }

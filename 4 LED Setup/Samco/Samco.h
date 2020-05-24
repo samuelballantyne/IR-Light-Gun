@@ -3,8 +3,8 @@
  * @brief Samco Light Gun library for 4 LED setup
  * @n Header file for Samco Light Gun 4 LED setup
  *
- * @copyright	[Samco](http://www.samco.co.nz), 2020
- * @copyright	GNU Lesser General Public License
+ * @copyright  [Samco](http://www.samco.co.nz), 2020
+ * @copyright GNU Lesser General Public License
  *
  * @author [Sam Ballantyne](samuelballantyne@hotmail.com)
  * @version  V1.0
@@ -35,25 +35,29 @@ private:
   int FinalX[4] = {400,623,400,623};
   int FinalY[4] = {200,200,568,568};
 
-  int xDist;
-  int yDist;
+  int xDistTop;
+  int xDistBottom;
+  int yDistLeft;
+  int yDistRight;
+
   float angle;
+  float angleOffset;
 
   int xx;
   int yy;
 
-  int i;	
+  int i;  
   
   int start = 0;
 
 public:
 
 void mapper(); 
-void begin(int x0, int y0, int x1, int y1, int x2, int y2, int x3, int y3);
+void begin(int x0, int y0, int x1, int y1, int x2, int y2, int x3, int y3, int cx, int cy);
 int testX(int index);  
 int testY(int index);
-testMedianX();
-testMedianY();
+int testMedianX();
+int testMedianY();
 int X();
 int Y();
 

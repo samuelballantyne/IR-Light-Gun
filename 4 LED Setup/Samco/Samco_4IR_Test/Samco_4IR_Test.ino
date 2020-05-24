@@ -32,12 +32,17 @@ DFRobotIRPosition myDFRobotIRPosition;
 Samco mySamco;
 
 int rawX[4];               // RAW Sensor Values
-int rawY[4];               
+int rawY[4];
+
+int xCenter = 512;
+int yCenter = 368;
 
 int mouseX;
 int mouseY;
-int centerX;
-int centerY;
+int medianX;
+int medianY;
+
+int time;
 
 void setup() {
 
@@ -77,9 +82,9 @@ void PrintResults() {    // Print results for debugging
     Serial.print( "," );
     Serial.print( mouseY + 100);
     Serial.print( "," );
-    Serial.print( centerX + 100);
+    Serial.print( medianX + 100);
     Serial.print( "," );
-    Serial.print( centerY + 100);
+    Serial.print( medianY + 100);
     Serial.println();
 }
 
@@ -88,15 +93,16 @@ void getPosition() {    // Get tilt adjusted position from IR postioning camera
 
 myDFRobotIRPosition.requestPosition();
     if (myDFRobotIRPosition.available()) {
-    mySamco.begin(myDFRobotIRPosition.readX(0), myDFRobotIRPosition.readY(0), myDFRobotIRPosition.readX(1), myDFRobotIRPosition.readY(1),myDFRobotIRPosition.readX(2), myDFRobotIRPosition.readY(2),myDFRobotIRPosition.readX(3), myDFRobotIRPosition.readY(3));
+    mySamco.begin(myDFRobotIRPosition.readX(0), myDFRobotIRPosition.readY(0), myDFRobotIRPosition.readX(1), myDFRobotIRPosition.readY(1),myDFRobotIRPosition.readX(2), myDFRobotIRPosition.readY(2),myDFRobotIRPosition.readX(3), myDFRobotIRPosition.readY(3), xCenter, yCenter);
     for (int i = 0; i < 4; i++) {
       rawX[i] = mySamco.testX(i);
       rawY[i] = mySamco.testY(i);
     }
     mouseX = mySamco.X();
     mouseY = mySamco.Y();
-    centerX = mySamco.testMedianX();
-    centerY = mySamco.testMedianY();
+    medianX = mySamco.testMedianX();
+    medianY = mySamco.testMedianY();
+    time = micros();
     }
     else {
     Serial.println("Device not available!");
@@ -109,7 +115,7 @@ myDFRobotIRPosition.requestPosition();
 
 myDFRobotIRPosition.requestPosition();
     if (myDFRobotIRPosition.available()) {
-    mySamco.begin(myDFRobotIRPosition.readX(0), myDFRobotIRPosition.readY(0), myDFRobotIRPosition.readX(1), myDFRobotIRPosition.readY(1),myDFRobotIRPosition.readX(2), myDFRobotIRPosition.readY(2),myDFRobotIRPosition.readX(3), myDFRobotIRPosition.readY(3));
+    mySamco.begin(myDFRobotIRPosition.readX(0), myDFRobotIRPosition.readY(0), myDFRobotIRPosition.readX(1), myDFRobotIRPosition.readY(1),myDFRobotIRPosition.readX(2), myDFRobotIRPosition.readY(2),myDFRobotIRPosition.readX(3), myDFRobotIRPosition.readY(3), xCenter, yCenter);
     for (int i = 0; i < 4; i++) {
       rawX[i] = map(mySamco.testX(i), 0, 1023, 1023, 0);
       rawY[i] = map(mySamco.testY(i), 0, 768, 768, 0);

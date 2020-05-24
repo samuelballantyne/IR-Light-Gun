@@ -14,7 +14,7 @@
 #include "Samco.h"
 #include "Arduino.h"
 
-void Samco::begin(int x0, int y0, int x1, int y1, int x2, int y2, int x3, int y3) {
+void Samco::begin(int x0, int y0, int x1, int y1, int x2, int y2, int x3, int y3, int cx, int cy) {
 
 // Remapping LED postions to use with library.
   
@@ -95,7 +95,7 @@ positionYY[3] = y3;
               }
             }
 
-// If LEDS have been seen place in correct quadrant, apply buufer an set to seen.
+// If LEDS have been seen place in correct quadrant, apply buffer an set to seen.
 
         } else {
 
@@ -136,12 +136,12 @@ positionYY[3] = y3;
                   FinalY[0] = positionY[i] + buff;
 
                 } else if (positionY[i] < 0) { 
-                  FinalX[0] = FinalX[2] - (yDist * sin(angle));
-                  FinalY[0] = FinalY[2] - abs(yDist * cos(angle));
+                  FinalX[0] = FinalX[2] + (yDistLeft * sin(angle));
+                  FinalY[0] = FinalY[2] - (yDistLeft * cos(angle));
 
                 } else if (positionX[i] < 0) {
-                  FinalX[0] = FinalX[1] - abs(xDist * cos(angle));
-                  FinalY[0] = FinalY[1] + (xDist * sin(angle));
+                  FinalX[0] = FinalX[1] - (xDistTop * cos(angle));
+                  FinalY[0] = FinalY[1] - (xDistTop * sin(angle));
 
                 }
               } else if (positionX[i] > medianX) {
@@ -150,12 +150,12 @@ positionYY[3] = y3;
                   FinalY[1] = positionY[i] + buff;
 
                 } else if (positionY[i] < 0) {
-                  FinalX[1] = FinalX[3] - (yDist * sin(angle));
-                  FinalY[1] = FinalY[3] - abs(yDist * cos(angle));
+                  FinalX[1] = FinalX[3] + (yDistRight * sin(angle));
+                  FinalY[1] = FinalY[3] - (yDistRight * cos(angle));
 
                 } else if (positionX[i] > 1023) {
-                  FinalX[1] = FinalX[0] + abs(xDist * cos(angle));
-                  FinalY[1] = FinalY[0] - (xDist * sin(angle));
+                  FinalX[1] = FinalX[0] + (xDistTop * cos(angle));
+                  FinalY[1] = FinalY[0] + (xDistTop * sin(angle));
                   
                 }
               }
@@ -168,12 +168,12 @@ positionYY[3] = y3;
                   FinalY[2] = positionY[i] - buff;
 
                 } else if (positionY[i] > 768) {
-                  FinalX[2] = FinalX[0] + (yDist * sin(angle));
-                  FinalY[2] = FinalY[0] + abs(yDist * cos(angle));
+                  FinalX[2] = FinalX[0] - (yDistLeft * sin(angle));
+                  FinalY[2] = FinalY[0] + (yDistLeft * cos(angle));
 
                 } else if (positionX[i] < 0) {
-                  FinalX[2] = FinalX[3] - abs(xDist * cos(angle));
-                  FinalY[2] = FinalY[3] + (xDist * sin(angle));
+                  FinalX[2] = FinalX[3] - (xDistBottom * cos(angle));
+                  FinalY[2] = FinalY[3] - (xDistBottom * sin(angle));
 
                 }
               } else if (positionX[i] > medianX) {
@@ -182,12 +182,12 @@ positionYY[3] = y3;
                   FinalY[3] = positionY[i] - buff;
 
                 } else if (positionY[i] > 768) {
-                  FinalX[3] = FinalX[1] + (yDist * sin(angle));
-                  FinalY[3] = FinalY[1] + abs(yDist * cos(angle));
+                  FinalX[3] = FinalX[1] - (yDistRight * sin(angle));
+                  FinalY[3] = FinalY[1] + (yDistRight * cos(angle));
 
                 } else if (positionX[i] > 1023) {
-                  FinalX[3] = FinalX[2] + abs(xDist * cos(angle));
-                  FinalY[3] = FinalY[2] - (xDist * sin(angle));
+                  FinalX[3] = FinalX[2] + (xDistBottom * cos(angle));
+                  FinalY[3] = FinalY[2] + (xDistBottom * sin(angle));
 
                 }
               }
@@ -199,6 +199,15 @@ positionYY[3] = y3;
       if ((positionYY[0] != 1023) && (positionYY[1] != 1023) && (positionYY[2] != 1023) && (positionYY[3] != 1023)){
         medianY = (positionY[0] + positionY[1] + positionY[2] + positionY[3]) / 4;
         medianX = (positionX[0] + positionX[1] + positionX[2] + positionX[3]) / 4;
+        if (yDistLeft > yDistRight){
+          angleOffset = asin((float)(yDistLeft-yDistRight)/(xDistTop)) / 2;
+        }
+        else if (yDistRight > yDistLeft){
+          angleOffset = (asin((float)(yDistRight-yDistLeft)/(xDistTop)) * -1) / 2;
+        }
+        else{
+          angleOffset = 0;
+        }
       }
       else{
         medianY = (FinalY[0] + FinalY[1] + FinalY[2] + FinalY[3]) / 4;
@@ -208,33 +217,42 @@ positionYY[3] = y3;
 // If 2 LEDS can be seen and loop has run through 5 times update angle and distances
 
       if ((see[0] > 5) && (see[2] > 5)) {
-        angle = (atan2(FinalY[2] - FinalY[0], FinalX[2] - FinalX[0]) * -1)  + 1.57;
-        yDist = hypot((FinalY[0] - FinalY[2]) , (FinalX[0] - FinalX[2]));
+        angle = (atan2(FinalX[2] - FinalX[0], FinalY[2] - FinalY[0]) * -1);
+        yDistLeft = hypot((FinalY[0] - FinalY[2]), (FinalX[0] - FinalX[2]));
       } 
-      else if ((see[3] > 5) && (see[1] > 5)) {
-        angle = (atan2(FinalY[3] - FinalY[1], FinalX[3] - FinalX[1]) * -1)  + 1.57;
-        yDist = hypot((FinalY[1] - FinalY[3]) , (FinalX[1] - FinalX[3]));
-        } 
       else {
-        yDist = yDist;
+        yDistLeft = yDistLeft;
       }
 
-      if ((see[0] > 5) && (see[1] > 5)) {
-        angle = (atan2(FinalY[1] - FinalY[0], FinalX[1] - FinalX[0]) * -1);
-        xDist = hypot((FinalY[0] - FinalY[1]) , (FinalX[0] - FinalX[1]));
-      } 
-      else if ((see[3] > 5) && (see[2] > 5)) {
-        angle = (atan2(FinalY[3] - FinalY[2], FinalX[3] - FinalX[2]) * -1);
-        xDist = hypot((FinalY[3] - FinalY[2]) , (FinalX[3] - FinalX[2]));
-      } 
+      if ((see[3] > 5) && (see[1] > 5)) {
+        angle = (atan2(FinalX[3] - FinalX[1], FinalY[3] - FinalY[1]) * -1);
+        yDistRight = hypot((FinalY[1] - FinalY[3]), (FinalX[1] - FinalX[3]));
+      }
       else {
-        xDist = xDist;
+        yDistRight = yDistRight;
+      }
+      
+
+      if ((see[0] > 5) && (see[1] > 5)) {
+        angle = (atan2(FinalX[1] - FinalX[0], FinalY[1] - FinalY[0]) * -1) + 1.57 - angleOffset;
+        xDistTop = hypot((FinalY[0] - FinalY[1]), (FinalX[0] - FinalX[1]));
+      }  
+      else {
+        xDistTop = xDistTop;
+      }
+
+      if ((see[3] > 5) && (see[2] > 5)) {
+        angle = (atan2(FinalX[3] - FinalX[2], FinalY[3] - FinalY[2]) * -1) + 1.57 + angleOffset;
+        xDistBottom = hypot((FinalY[3] - FinalY[2]), (FinalX[3] - FinalX[2]));
+      }
+      else {
+        xDistBottom = xDistBottom;
       }
 
 // Add tilt correction
       
-      xx = 512 + cos(angle) * (medianX - 512) - sin(angle) * (medianY - 384);
-      yy = 384 + sin(angle) * (medianX - 512) + cos(angle) * (medianY - 384);
+      xx = cx + cos(angle * -1) * (medianX - cx) - sin(angle * -1) * (medianY - cy);
+      yy = cy + sin(angle * -1) * (medianX - cx) + cos(angle * -1) * (medianY - cy);
       
     }
     else{}

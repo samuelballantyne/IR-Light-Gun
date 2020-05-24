@@ -19,6 +19,9 @@ int yTop = 0;
 int xRight = 0;
 int yBottom = 0;
 
+int xCenter = 512;
+int yCenter = 368;
+
 int MoveXAxis = 0;              // Unconstrained mouse postion
 int MoveYAxis = 0;               
 
@@ -101,8 +104,7 @@ void loop() {
 
 
     skip();
-    mouseCount();
-    AbsMouse.move((res_x / 2), (res_y / 2));  
+    mouseCount(); 
 
 
   }
@@ -140,6 +142,9 @@ void loop() {
 
     xRight = finalX;
     yBottom = finalY;
+
+    xCenter = ((xRight - xLeft) / 2) + min(xRight, xLeft);
+    yCenter = ((yBottom - yTop) / 2) + min(yBottom, yTop);
 
     PrintResults();
 
@@ -181,7 +186,7 @@ void getPosition() {    // Get tilt adjusted position from IR postioning camera
 
 myDFRobotIRPosition.requestPosition();
     if (myDFRobotIRPosition.available()) {
-    mySamco.begin(myDFRobotIRPosition.readX(0), myDFRobotIRPosition.readY(0), myDFRobotIRPosition.readX(1), myDFRobotIRPosition.readY(1),myDFRobotIRPosition.readX(2), myDFRobotIRPosition.readY(2),myDFRobotIRPosition.readX(3), myDFRobotIRPosition.readY(3));
+    mySamco.begin(myDFRobotIRPosition.readX(0), myDFRobotIRPosition.readY(0), myDFRobotIRPosition.readX(1), myDFRobotIRPosition.readY(1),myDFRobotIRPosition.readX(2), myDFRobotIRPosition.readY(2),myDFRobotIRPosition.readX(3), myDFRobotIRPosition.readY(3), xCenter, yCenter);
     finalX = mySamco.X();
     finalY = mySamco.Y();
     }
