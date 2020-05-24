@@ -1,6 +1,6 @@
 # SAMCO - Arduino Powered IR Light Gun
 
-For information on how to use this library please visit my YouTube channel https://www.youtube.com/c/samcorulz.
+For information on how to use this libraries please visit my YouTube channel https://www.youtube.com/c/samcorulz.
 
 The SAMCO is a Namco light gun with the insides replaced with an Arduino micro controller and DF Robot IR positioning camera and works as HID mouse on LCD (flat screen) TV/monitors.
 
@@ -16,8 +16,12 @@ Quick calibration
 Pause/recaibration  
 Tilt correction  
 
+Note: libraries are sorted slightly differently...  
+To use 2 LED libries place board type folder in Documents/Arduino/library eg. Documents/Arduino/library/Samco_1.1  
+To use 4 LED library place Samco folder in Documents/Arduino/library eg. Documents/Arduino/library/Samco  
+
 In this project I've used libraries from DFRobot & Jonathan Edgecome. Original Libraries can be found at...
 https://github.com/DFRobot/DFRobotIRPosition  
 https://github.com/jonathanedgecombe/absmouse
 
-If you enjoyed thsi code please consider becoming a patreon: https://www.patreon.com/samco
+If you enjoyed this code please consider becoming a patreon: https://www.patreon.com/samco
