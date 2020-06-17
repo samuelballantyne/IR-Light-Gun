@@ -11,6 +11,9 @@
  * @date  2020
  */
 
+int xCenter = 512;              // If second calibration seems more accurate you can replace these values with the altered camera center values from serial monitor
+int yCenter = 368;
+
 int finalX = 0;                 // Values after tilt correction
 int finalY = 0;
 
@@ -18,9 +21,6 @@ int xLeft = 0;                  // Stored calibration points
 int yTop = 0;
 int xRight = 0;
 int yBottom = 0;
-
-int xCenter = 512;
-int yCenter = 368;
 
 int MoveXAxis = 0;              // Unconstrained mouse postion
 int MoveYAxis = 0;               
@@ -119,7 +119,6 @@ void loop() {
 
     mouseCount();
     getPosition();
-    reset();
 
     xLeft = finalX;
     yTop = finalY;
@@ -138,7 +137,6 @@ void loop() {
 
     mouseCount();
     getPosition();
-    reset();
 
     xRight = finalX;
     yBottom = finalY;
@@ -340,9 +338,9 @@ void PrintResults() {    // Print results for debugging
   Serial.print(xRight);
   Serial.print(", ");
   Serial.print(yBottom);
-  Serial.print("     Position: ");
-  Serial.print(conMoveXAxis);
-  Serial.print(", ");
-  Serial.println(conMoveYAxis);
+  Serial.print("     Cam Center: x ");
+  Serial.print(xCenter);
+  Serial.print(", y ");
+  Serial.println(yCenter);
 
 }
