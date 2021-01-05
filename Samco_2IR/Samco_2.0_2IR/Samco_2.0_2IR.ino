@@ -42,7 +42,7 @@ int _left = 10;
 int _right = 12;               
 int _APin = A1;                
 int _BPin = A0;              
-int _start = A2; 
+int _startPin = A2; 
 int _select = A3;               
 int _reload = 13;
 int _pedal = 5;               
@@ -94,7 +94,7 @@ void setup() {
   pinMode(_right, INPUT_PULLUP);         // Set pin modes
   pinMode(_APin, INPUT_PULLUP);
   pinMode(_BPin, INPUT_PULLUP);
-  pinMode(_start, INPUT_PULLUP);  
+  pinMode(_startPin, INPUT_PULLUP);  
   pinMode(_select, INPUT_PULLUP);
   pinMode(_reload, INPUT_PULLUP);       
 
@@ -267,7 +267,7 @@ void mouseButtons() {    // Setup Left, Right & Middle Mouse buttons
   buttonState6 = digitalRead(_right);   
   buttonState7 = digitalRead(_APin);
   buttonState8 = digitalRead(_BPin);
-  buttonState9 = digitalRead(_start);      
+  buttonState9 = digitalRead(_startPin);      
   buttonState10 = digitalRead(_select); 
 
   
