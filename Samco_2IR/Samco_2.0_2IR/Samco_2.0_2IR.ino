@@ -40,8 +40,8 @@ int _up = 11;
 int _down = 9;              
 int _left = 10;             
 int _right = 12;               
-int _A = A1;                
-int _B = A0;              
+int _APin = A1;                
+int _BPin = A0;              
 int _start = A2; 
 int _select = A3;               
 int _reload = 13;
@@ -265,8 +265,8 @@ void mouseButtons() {    // Setup Left, Right & Middle Mouse buttons
   buttonState4 = digitalRead(_down);
   buttonState5 = digitalRead(_left);
   buttonState6 = digitalRead(_right);   
-  buttonState7 = digitalRead(_A);
-  buttonState8 = digitalRead(_B);
+  buttonState7 = digitalRead(_APin);
+  buttonState8 = digitalRead(_BPin);
   buttonState9 = digitalRead(_start);      
   buttonState10 = digitalRead(_select); 
 
