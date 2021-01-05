@@ -92,8 +92,8 @@ void setup() {
   pinMode(_down, INPUT_PULLUP);
   pinMode(_left, INPUT_PULLUP);
   pinMode(_right, INPUT_PULLUP);         // Set pin modes
-  pinMode(_A, INPUT_PULLUP);
-  pinMode(_B, INPUT_PULLUP);
+  pinMode(_APin, INPUT_PULLUP);
+  pinMode(_BPin, INPUT_PULLUP);
   pinMode(_start, INPUT_PULLUP);  
   pinMode(_select, INPUT_PULLUP);
   pinMode(_reload, INPUT_PULLUP);       
