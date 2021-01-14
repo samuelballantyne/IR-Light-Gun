@@ -30,7 +30,7 @@ void setup() {
   // List all the available serial ports
   printArray(Serial.list());
   // Open the port you are using at the rate you want:
-  myPort = new Serial(this, Serial.list()[port], 19200);
+  myPort = new Serial(this, Serial.list()[port], 9600);
   delay (100);
   myPort.clear();
 
@@ -84,6 +84,8 @@ void drawCircle( int xval, int yval, color c ){
  
 void convertmyStringToCoordinates() {
   
+   try {
+  
   println(myString); 
   int[] output = int (split(trim(myString), ',')); 
  
@@ -101,5 +103,12 @@ void convertmyStringToCoordinates() {
   
   dx = output[10];
   dy = output[11];
+  
+}
+  
+  catch(ArrayIndexOutOfBoundsException exception) {
+    println("612,484,612,484,612,484,612,484,612,484,612,484,"); 
+}
+ 
       
 }
