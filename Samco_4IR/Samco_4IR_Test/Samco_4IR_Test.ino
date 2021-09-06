@@ -45,8 +45,9 @@ int medianY;
 int time;
 
 void setup() {
-
-    digitalWrite (5, HIGH);           // Only required for SAMCO 1.1
+    
+    pinMode(5, OUTPUT);                // Needed for IstyBitsy 32u4 5V and other 32u4 boards    
+    digitalWrite (5, HIGH);            // Only required for SAMCO 1.1
     delay(500);
 
     myDFRobotIRPosition.begin();       // initialize the object in setup()
