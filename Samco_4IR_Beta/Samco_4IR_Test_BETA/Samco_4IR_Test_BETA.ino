@@ -46,6 +46,7 @@ int time;
 
 void setup() {
 
+    pinMode(5, OUTPUT);                     // Needed for IstyBitsy 32u4 5V and other 32u4 boards    
     digitalWrite (5, HIGH);           // Only required for SAMCO 1.1
     delay(500);
 
