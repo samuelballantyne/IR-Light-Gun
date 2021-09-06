@@ -62,6 +62,7 @@ int res_y = 768;               // UPDATE: These values do not need to change
 
 void setup() {
 
+  pinMode(5, OUTPUT);                     // Needed for IstyBitsy 32u4 5V and other 32u4 boards    
   digitalWrite (5, HIGH);                 // This pin is used to power the IR Camera when using Samco PCB
   delay(500);
   
