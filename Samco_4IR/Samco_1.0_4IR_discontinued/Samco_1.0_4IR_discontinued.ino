@@ -6,8 +6,9 @@
 
   created June 2019
   by Sam Ballantyne
-
-  This sample code is part of the public domain.
+  
+  @copyright   Samco, https://github.com/samuelballantyne, October 2021
+  @copyright   GNU Lesser General Public License
 
 */
 
