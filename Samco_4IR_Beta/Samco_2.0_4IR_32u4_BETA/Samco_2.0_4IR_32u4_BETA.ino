@@ -372,20 +372,20 @@ void mouseButtons() {    // Setup Left, Right & Middle Mouse buttons
   }
   if (buttonState9 != lastButtonState9) {
     if (buttonState9 == LOW) {
-    Keyboard.press(_selectKey);
+    Keyboard.press(_startKey);
     }
     else {
-    Keyboard.release(_selectKey);
+    Keyboard.release(_startKey);
     }
     delay(10);
   }
   
   if (buttonState10 != lastButtonState10) {
     if (buttonState10 == LOW) {
-    Keyboard.press(_startKey);
+    Keyboard.press(_selectKey);
     }
     else {
-    Keyboard.release(_startKey);
+    Keyboard.release(_selectKey);
     }
     delay(10);
   }
