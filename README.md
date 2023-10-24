@@ -21,3 +21,5 @@ https://github.com/DFRobot/DFRobotIRPosition
 https://github.com/jonathanedgecombe/absmouse
 
 If you haven't brought a PCB but enjopyed this code please consider making a small donation to help me contuine developing and supplying support for this project https://www.paypal.me/sammywizbang. Cheers Sam(co)
+
+UPDATE: There is a great fork of this project for Samco 2.0 boards by Prow7 over at https://github.com/Prow7/ir-light-gun
